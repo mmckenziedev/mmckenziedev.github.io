@@ -1,0 +1,4 @@
+//>>built
+define("app/constants",["module"],function(h){var a={READY:0,ROCK:1,PAPER:2,SCISSORS:4,LIZARD:8,SPOCK:16};(function(){for(var b in a)a.hasOwnProperty(b)&&(a[a[b]]=b)})();var c={ROCK:{LIZARD:"crushes",SCISSORS:"crushes"},PAPER:{ROCK:"covers",SPOCK:"disproves"},SCISSORS:{PAPER:"cut",LIZARD:"decapitates"},LIZARD:{PAPER:"eats",SPOCK:"poisons"},SPOCK:{SCISSORS:"smashes",ROCK:"vapourises"}},c=function(b){var d,e,c={},g,f;for(d in b)if(b.hasOwnProperty(d))for(e in c[a[d]]=g={},f=b[d],f)f.hasOwnProperty(e)&&
+(g[a[e]]=f[e]);return c}(c);h.exports={LABELS:{"0":"\u00a0",1:"Rock",2:"Paper",4:"Scissors",8:"Lizard",16:"Spock"},TYPES:a,RULES:c,RESULT_TEMPLATE:"${0} ${2} ${1}",RESULTS:{DRAW:0,LOSS:1,WIN:2}}});
+//# sourceMappingURL=constants.js.map

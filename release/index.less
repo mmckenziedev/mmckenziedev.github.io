@@ -1,0 +1,174 @@
+@backgroundColor: #0169B2;
+@iconBorder: 1px solid darken(@backgroundColor, 10%);
+@iconHeight: 124px;
+@iconWidth: 124px;
+@imagePath: "images";
+html , body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: lighten(@backgroundColor, 10%);
+	font-size: 16px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+h1{
+	font-weight: bold;
+	text-align: center;
+}
+
+#appContainer {
+	height: 100%;
+	width: 100%;
+}
+
+#header {
+	height: 50px;
+}
+
+#sidebar {
+	font-size: 12px;
+	width: 200px;
+}
+
+#content {
+	background-color: lighten(@backgroundColor, 10%);
+}
+
+#gameStateContainer {
+	margin-bottom: 1em;
+	padding-top: 1em;
+	text-align: center;
+	white-space: nowrap;
+	.PlayerWidget , .ResultWidget {
+		position: relative;
+	}
+
+	.ResultWidget {
+		margin: 0 2em;
+	}
+
+	#resultText {
+		font-size: 150%;
+		font-weight: bold;
+		min-height: 4em;
+		padding: 1em 0.5em 0;
+		text-align: center;
+	}
+}
+
+#buttonContainer {
+	text-align: center;
+}
+
+.ButtonWidget {
+	border: 0 none;
+	background-color: @backgroundColor;
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	padding: 0;
+	position: relative;
+	width: auto;
+	backface-visibility: hidden;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transform: translateZ(0);
+	transition-duration: 0.3s;
+	transition-property: transform;
+	z-index: 1;
+	&:hover {
+		transform: scale(1.1);
+		z-index: 2;
+		.IconWidget {
+			border-color: darken(@backgroundColor, 20%);
+			border-width: 2px;
+		}
+	}
+}
+
+.IconNodeMixin () {
+	background-color: @backgroundColor;
+	display: inline-block;
+	min-height: @iconHeight;
+	min-width: @iconWidth;
+}
+
+.IconWidget {
+	.IconNodeMixin ();
+	border: @iconBorder;
+	.icon {
+		background-position: center center;
+		background-repeat: no-repeat;
+		display: block;
+		height: @iconHeight;
+		width: @iconWidth;
+		.createIcon (@name) {
+			&.@{name} {
+				background-image: data-uri("image/png;base64", "@{imagePath}/@{name}.png");
+			}
+		}
+
+		.createIcon (rock);
+		.createIcon (paper);
+		.createIcon (scissors);
+		.createIcon (lizard);
+		.createIcon (spock);
+	}
+
+	&Text {
+		display: block;
+		padding: 0.25em 0;
+		text-align: center;
+	}
+}
+
+.PlayerWidget {
+	border: 1px solid #000;
+	display: inline-block;
+	min-height: 4em;
+	min-width: 3em;
+	&IconNode {
+		.IconNodeMixin ();
+	}
+
+	&TextNode {
+		background-color: #FFFFFF;
+		display: block;
+		padding: 0.25em 0.5em;
+		text-align: center;
+	}
+
+	.score {
+		&Container {
+			background-color: #FFFFFF;
+			min-height: 1em;
+			padding: 0.25em 0.5em;
+			text-align: center;
+		}
+
+		&Label {
+			margin-right: 0.5em;
+		}
+	}
+}
+
+.ResultWidget {
+	border: 1px solid #000;
+	display: inline-block;
+	min-height: 4em;
+	min-width: 3em;
+	&IconNode {
+		.IconNodeMixin ();
+		background-color: @backgroundColor;
+		text-align: center;
+		width: 100%;
+	}
+}
+
